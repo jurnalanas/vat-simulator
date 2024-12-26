@@ -1,5 +1,7 @@
 # VAT Simulator
 
+![VAT Simulator](public/social/og-ppn.png)
+
 An interactive Value Added Tax (PPN) comparison tool built with Next.js 15, React 19, TypeScript, and Shadcn UI. This application helps users understand the impact of different VAT rates on consumer prices across the supply chain.
 
 ## Getting Started
