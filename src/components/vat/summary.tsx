@@ -48,12 +48,14 @@ export function Summary({ vatRates, prices1, prices2 }: SummaryProps) {
       </div>
       <div className="text-xs text-muted-foreground">
         <p>
-          This is just a simple simulation. If you have any suggestions, please{" "}
+          Please note that this is a simplified model and may not reflect the
+          actual situation in the market. If you have any suggestions, kindly
+          consider{" "}
           <Link
-            href="https://x.com/oianas_/status/1871874431846650045"
+            href="https://github.com/jurnalanas/vat-simulator/"
             className="text-muted-foreground underline"
           >
-            report it here.
+            contribute to this project
           </Link>
         </p>
       </div>
