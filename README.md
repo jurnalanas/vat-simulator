@@ -28,6 +28,6 @@ bun dev
 
 Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
 
-## Acknowledgments
+## License
 
-Built with ❤️ by [Anas](https://x.com/oianas_)
+This project is open source and available under the [MIT License](LICENSE).
