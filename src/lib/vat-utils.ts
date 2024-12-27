@@ -8,11 +8,12 @@ export function calculateVATPrices(
   let currentPrice = basePrice;
   let totalVAT = 0;
 
-  return margins.map((margin) => {
+  return margins.map((margin, index) => {
     const marginAmount = (currentPrice * margin) / 100;
     currentPrice += marginAmount;
 
-    const vatAmount = currentPrice * vatRate;
+    // Only calculate VAT if not at consumer level (last stage)
+    const vatAmount = index < margins.length - 1 ? currentPrice * vatRate : 0;
     const finalPrice = currentPrice + vatAmount;
 
     currentPrice = finalPrice;
