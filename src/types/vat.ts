@@ -1,6 +1,8 @@
 export interface StageData {
   price: number;
-  vatAmount: number;
+  inputVAT: number;
+  outputVAT: number;
+  netVAT: number;
   totalVAT: number;
 }
 
@@ -10,7 +12,9 @@ export interface StageConfig {
   margin: number;
   vat: number;
   price: number;
-  vatAmount: number;
+  inputVAT: number;
+  outputVAT: number;
+  netVAT: number;
 }
 
 export interface VATCalculationResult {

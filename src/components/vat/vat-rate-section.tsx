@@ -87,7 +87,9 @@ export function VATRateSection({
               margin={margins[index]}
               vat={vatConfig.rate}
               price={prices[index].price}
-              vatAmount={prices[index].vatAmount}
+              inputVAT={prices[index].inputVAT}
+              outputVAT={prices[index].outputVAT}
+              netVAT={prices[index].netVAT}
             />
           </motion.div>
         ))}

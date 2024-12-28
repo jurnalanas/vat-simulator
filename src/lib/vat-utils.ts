@@ -7,21 +7,36 @@ export function calculateVATPrices(
 ): StageData[] {
   let currentPrice = basePrice;
   let totalVAT = 0;
+  let previousVAT = 0;
 
   return margins.map((margin, index) => {
     const marginAmount = (currentPrice * margin) / 100;
-    currentPrice += marginAmount;
+    const priceBeforeVAT = currentPrice + marginAmount;
 
-    // Only calculate VAT if not at consumer level (last stage)
-    const vatAmount = index < margins.length - 1 ? currentPrice * vatRate : 0;
-    const finalPrice = currentPrice + vatAmount;
+    let inputVAT = 0;
+    let outputVAT = 0;
+    let vatAmount = 0;
 
+    if (index === 0) {
+      outputVAT = priceBeforeVAT * vatRate;
+      vatAmount = outputVAT;
+      previousVAT = outputVAT;
+    } else if (index < margins.length - 1) {
+      inputVAT = previousVAT;
+      outputVAT = priceBeforeVAT * vatRate;
+      vatAmount = outputVAT - inputVAT;
+      previousVAT = outputVAT;
+    }
+
+    const finalPrice = priceBeforeVAT + vatAmount;
     currentPrice = finalPrice;
     totalVAT += vatAmount;
 
     return {
       price: finalPrice,
-      vatAmount,
+      inputVAT,
+      outputVAT,
+      netVAT: outputVAT - inputVAT,
       totalVAT,
     };
   });

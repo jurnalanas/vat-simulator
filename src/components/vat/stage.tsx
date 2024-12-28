@@ -17,7 +17,9 @@ export function Stage({
   margin,
   vat,
   price,
-  vatAmount,
+  inputVAT,
+  outputVAT,
+  netVAT,
 }: StageConfig) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -49,15 +51,38 @@ export function Stage({
         <p className="text-sm text-muted-foreground">
           Margin: <span className="font-medium text-foreground">{margin}%</span>
         </p>
-        <p className="text-sm text-muted-foreground">
-          PPN: <span className="font-medium text-foreground">{vat}%</span>
-        </p>
-        <p className="text-sm text-muted-foreground">
-          PPN Amount:{" "}
-          <span className="font-medium text-foreground">
-            {formatCurrency(vatAmount)}
-          </span>
-        </p>
+        {name !== "Konsumen" && (
+          <p className="text-sm text-muted-foreground">
+            PPN: <span className="font-medium text-foreground">{vat}%</span>
+          </p>
+        )}
+        {(name === "Distributor" || name === "Toko") && (
+          <>
+            <p className="text-sm text-muted-foreground">
+              PPN Masukan:{" "}
+              <span className="font-medium text-foreground">
+                Rp {Math.round(inputVAT).toLocaleString("id-ID")}
+              </span>
+            </p>
+            <p className="text-sm text-muted-foreground">
+              PPN Keluaran:{" "}
+              <span className="font-medium text-foreground">
+                Rp {Math.round(outputVAT).toLocaleString("id-ID")}
+              </span>
+            </p>
+            <p className="text-sm text-muted-foreground">
+              PPN Terutang:{" "}
+              <span
+                className={cn(
+                  "font-medium",
+                  netVAT > 0 ? "text-red-600" : "text-green-600",
+                )}
+              >
+                Rp {Math.round(netVAT).toLocaleString("id-ID")}
+              </span>
+            </p>
+          </>
+        )}
       </CollapsibleContent>
     </Collapsible>
   );
